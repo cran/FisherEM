@@ -8,7 +8,7 @@ The Fisher-EM algorithm
 The Fisher-EM algorithm is a subspace clustering method for high-dimensional data. It is based on the Gaussian Mixture Model and on the idea that the data lives in a common and low dimensional subspace. An EM-like algorithm estimates both the discriminative subspace and the parameters of the mixture model.
 }
 \usage{
-fem(Y,K=2:6,model='AkjBk',method='svd',crit='icl',maxit=50,eps=1e-4,init='kmeans',
+fem(Y,K=2:6,model='AkjBk',method='gs',crit='icl',maxit=50,eps=1e-4,init='kmeans',
                 nstart=5,Tinit=c(),kernel='',disp=FALSE,mc.cores=(detectCores()-1),
                 subset=NULL)
 }
@@ -22,7 +22,7 @@ An integer vector specifying the numbers of mixture components (clusters) among 
  \item{model}{A vector of discriminative latent mixture (DLM) models to fit. There are 12 different models: "DkBk", "DkB", "DBk", "DB", "AkjBk", "AkjB", "AkBk", "AkBk", "AjBk", "AjB", "ABk", "AB".  The option "all" executes the Fisher-EM algorithm on the 12 DLM models and select the best model according to the maximum value obtained by model selection criterion. 
 } 
  \item{method}{
-The method used for the fitting of the projection matrix associated to the discriminative subspace. Three methods are available: 'gs' (Gram-Schmidt, the original proposition), 'svd' (based on SVD, faster) and 'reg' (the Fisher criterion is rewritten as a regression problem). The 'svd' method is the default method since it is the fastest one on most data sets.
+The method used for the fitting of the projection matrix associated to the discriminative subspace. Three methods are available: 'gs' (Gram-Schmidt, the original proposition), 'svd' (based on SVD, fastest approach, it should be preferred on large data sets) and 'reg' (the Fisher criterion is rewritten as a regression problem). The 'gs' method is the default method since it is the most efficient one on most data sets.
 }
    \item{crit}{The model selection criterion to use for selecting the most appropriate model for the data. There are 3 possibilities: "bic", "aic" or "icl". Default is "icl".
 }
@@ -92,7 +92,7 @@ table(iris$Species,res$cls)
 \donttest{
 # Fit several models and numbers of groups (use by default on non-Windows
 # platforms the parallel computing).
-res = fem(iris[,-5],K=2:6,model='all',method='gs')
+res = fem(iris[,-5],K=2:6,model='all',method='gs', mc.cores=2)
 res
 plot(res)
 fem.ari(res,as.numeric(iris$Species))

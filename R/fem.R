@@ -1,4 +1,4 @@
-fem <- function(Y,K=2:6,model='AkjBk',method='svd',crit='icl',maxit=50,eps=1e-4,init='kmeans',
+fem <- function(Y,K=2:6,model='AkjBk',method='gs',crit='icl',maxit=50,eps=1e-4,init='kmeans',
                 nstart=5,Tinit=c(),kernel='',disp=FALSE,mc.cores=(detectCores()-1),subset=NULL){
   call = match.call()
   MOD = c('DkBk','DkB','DBk','DB','AkjBk','AkjB','AkBk','AkB','AjB','AjBk', 'ABk', 'AB','all')

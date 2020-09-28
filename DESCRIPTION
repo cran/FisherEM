@@ -2,11 +2,13 @@ Package: FisherEM
 Type: Package
 Title: The FisherEM Algorithm to Simultaneously Cluster and Visualize
         High-Dimensional Data
-Version: 1.5.2
-Date: 2020-07-21
+Version: 1.6
+Date: 2020-09-28
+Encoding: UTF-8
 Author: Charles Bouveyron, Camille Brunet & Nicolas Jouvin.
 Maintainer: Charles Bouveyron <charles.bouveyron@gmail.com>
-Depends: MASS, parallel, elasticnet
+Depends: MASS, parallel, elasticnet, ggplot2
+Imports: ellipse, plyr
 Description: The FisherEM algorithm, proposed by Bouveyron & Brunet (2012) <doi:10.1007/s11222-011-9249-9>,
         is an efficient method for the clustering of high-dimensional data. FisherEM models and 
         clusters the data in a discriminative and low-dimensional latent subspace. It also provides
@@ -15,6 +17,8 @@ Description: The FisherEM algorithm, proposed by Bouveyron & Brunet (2012) <doi:
 License: GPL-2
 LazyLoad: yes
 NeedsCompilation: no
-Packaged: 2020-07-22 08:29:58 UTC; charles
+RoxygenNote: 7.1.1
+Suggests: testthat, aricode
+Packaged: 2020-09-28 13:33:41 UTC; charles
 Repository: CRAN
-Date/Publication: 2020-07-22 08:42:07 UTC
+Date/Publication: 2020-09-28 14:10:02 UTC
